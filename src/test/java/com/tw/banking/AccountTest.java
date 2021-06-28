@@ -36,4 +36,17 @@ public class AccountTest {
         verify(transactionRepository, times(1)).addWithdraw(amount);
     }
 
+    @Test
+    public void should_execute_print_of_printer_when_account_printStatement() {
+        //given
+        TransactionRepository transactionRepository = mock(TransactionRepository.class);
+        Printer printer = mock(Printer.class);
+
+        //when
+        Account mandy = new Account(transactionRepository, printer);
+
+        //then
+        mandy.printStatement();
+        verify(printer, times(1)).print(transactionRepository.allTransactions());
+    }
 }

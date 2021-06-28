@@ -31,4 +31,18 @@ public class TransactionRepositoryTest {
         assertEquals(999, transactions.get(0).amount());
     }
 
+    @Test
+    public void should_have_negative_amount_when_addWithdraw_given_amount() {
+        //given
+        int amount = 999;
+        transactionRepository.addWithdraw(amount);
+
+        //when
+        List<Transaction> transactions = transactionRepository.allTransactions();
+
+        //then
+        assertEquals(1, transactions.size());
+        assertEquals(-999, transactions.get(0).amount());
+    }
+
 }

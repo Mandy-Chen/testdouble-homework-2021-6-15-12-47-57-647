@@ -28,11 +28,11 @@ public class PrinterTest {
         //when
         printer.print(transactions);
 
+        //then
         ArgumentCaptor<String> stringArgumentCaptor = ArgumentCaptor.forClass(String.class);
         verify(console, times(3)).printLine(stringArgumentCaptor.capture());
         List<String> actualArguments = stringArgumentCaptor.getAllValues();
 
-        //then
         assertEquals(Printer.STATEMENT_HEADER, actualArguments.get(0));
         assertEquals("28/06/2021 | 200 | 300", actualArguments.get(1));
         assertEquals("28/06/2021 | 100 | 100", actualArguments.get(2));
@@ -54,6 +54,7 @@ public class PrinterTest {
 
         //then
         assertEquals(Printer.STATEMENT_HEADER, actualArguments.get(0));
+        assertEquals(1, actualArguments.size());
     }
 
 
